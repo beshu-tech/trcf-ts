@@ -1,0 +1,55 @@
+{
+  "name": "@beshu-tech/trcf-ts",
+  "version": "1.0.0",
+  "description": "TypeScript implementation of AWS Thresholded Random Cut Forest for anomaly detection",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "anomaly-detection",
+    "time-series",
+    "machine-learning",
+    "random-cut-forest",
+    "trcf",
+    "streaming",
+    "typescript",
+    "monitoring",
+    "alerting",
+    "aws",
+    "performance",
+    "real-time",
+    "beshu"
+  ],
+  "author": "Beshu Limited",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/beshu-tech/trcf-ts.git"
+  },
+  "homepage": "https://github.com/beshu-tech/trcf-ts#readme",
+  "bugs": {
+    "url": "https://github.com/beshu-tech/trcf-ts/issues"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md",
+    "NOTICE"
+  ],
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.5.0",
+    "jest": "^30.1.3",
+    "ts-jest": "^29.4.2",
+    "typescript": "^5.9.2"
+  }
+}

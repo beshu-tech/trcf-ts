@@ -1,0 +1,6 @@
+export enum CorrectionMode {
+  NONE = "NONE",
+  ALERT_ONCE = "ALERT_ONCE",
+  CONDITIONAL_FORECAST = "CONDITIONAL_FORECAST",
+  DATA_DRIFT = "DATA_DRIFT"
+}

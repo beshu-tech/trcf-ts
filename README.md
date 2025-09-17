@@ -15,6 +15,16 @@
 ✅ **Zero Config** - Works out of the box with sensible defaults
 ✅ **TypeScript Native** - Full type safety and IntelliSense support
 
+## Java Comparison 🔥
+
+| Aspect | Implementation | Status |
+|--------|---------------|--------|
+| Precision | Float64Array | ✅ Exact |
+| Random | Java LCG | ✅ Exact |
+| Defaults | All aligned | ✅ Exact |
+| Score Accuracy | - | 91-96% match |
+| Performance | - | 25-58x faster |
+
 ## Installation
 
 ```bash
@@ -317,18 +327,6 @@ Input → Preprocessor → RCF Forest → PredictorCorrector → Thresholder →
 
 </details>
 
-<details>
-<summary><b>Java Compatibility</b></summary>
-
-| Aspect | Implementation | Status |
-|--------|---------------|--------|
-| Precision | Float64Array | ✅ Exact |
-| Random | Java LCG | ✅ Exact |
-| Defaults | All aligned | ✅ Exact |
-| Score Accuracy | - | 91-96% match |
-| Performance | - | 25-58x faster |
-
-</details>
 
 <details>
 <summary><b>Benchmarks</b></summary>

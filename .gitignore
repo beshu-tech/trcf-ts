@@ -9,6 +9,11 @@ dist/
 build/
 *.tsbuildinfo
 
+# Prevent JavaScript files in src directory
+src/**/*.js
+src/**/*.js.map
+!src/**/*.test.js
+
 # IDE and editor files
 .vscode/
 .idea/
@@ -75,3 +80,15 @@ coverage/
 # Temporary folders
 tmp/
 temp/
+
+# Temporary and test files
+*.tmp
+*.temp
+*debug*
+*scratch*
+quick-*
+perf-test*
+
+# Prevent common misplaced files
+benchmarks/results/package*.json
+benchmarks/results/tsconfig.json

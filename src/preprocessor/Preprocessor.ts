@@ -1,3 +1,9 @@
+/**
+ * Copyright Beshu Limited 2025
+ * Licensed under the Apache License, Version 2.0
+ * Based on AWS Random Cut Forest (https://github.com/aws/random-cut-forest-by-aws)
+ */
+
 import { ForestMode } from '../config/ForestMode';
 import { TransformMethod } from '../config/TransformMethod';
 import { ImputationMethod } from '../config/ImputationMethod';
@@ -52,7 +58,7 @@ export class Preprocessor {
   private valuesSeen: number = 0;
   private numberOfImputed: number = 0;
   private lastShingledInput: number[] | null = null;
-  private lastShingledPoint: Float32Array | null = null;
+  private lastShingledPoint: Float64Array | null = null;
   private previousTimeStamps: number[] | null = null;
   private timeStampDeviations: Deviation[] | null = null;
   private dataQuality: Deviation[];
@@ -96,7 +102,7 @@ export class Preprocessor {
 
     if (config.initialPoint) {
       this.lastShingledInput = config.initialPoint;
-      this.lastShingledPoint = new Float32Array(config.initialPoint);
+      this.lastShingledPoint = new Float64Array(config.initialPoint);
     }
 
     if (config.initialTimeStamps) {
@@ -105,7 +111,7 @@ export class Preprocessor {
   }
 
   public process(inputPoint: number[], timestamp?: number, missingValues?: number[]): {
-    point: Float32Array;
+    point: Float64Array;
     shingledInput: number[];
     imputedIndices: number[];
   } {
@@ -223,8 +229,8 @@ export class Preprocessor {
     this.previousTimeStamps[this.shingleSize - 1] = timestamp;
   }
 
-  private transform(shingledInput: number[]): Float32Array {
-    const result = new Float32Array(shingledInput.length);
+  private transform(shingledInput: number[]): Float64Array {
+    const result = new Float64Array(shingledInput.length);
 
     if (this.transformMethod === TransformMethod.NONE ||
         this.valuesSeen < this.startNormalization ||
@@ -251,8 +257,8 @@ export class Preprocessor {
     }
   }
 
-  private normalize(shingledInput: number[]): Float32Array {
-    const result = new Float32Array(shingledInput.length);
+  private normalize(shingledInput: number[]): Float64Array {
+    const result = new Float64Array(shingledInput.length);
 
     for (let i = 0; i < this.inputLength; i++) {
       const mean = this.deviations[i][0].getMean();
@@ -269,8 +275,8 @@ export class Preprocessor {
     return result;
   }
 
-  private difference(shingledInput: number[]): Float32Array {
-    const result = new Float32Array(shingledInput.length);
+  private difference(shingledInput: number[]): Float64Array {
+    const result = new Float64Array(shingledInput.length);
 
     for (let i = 0; i < this.inputLength; i++) {
       // First shingle position - no previous value to difference
@@ -287,7 +293,7 @@ export class Preprocessor {
     return result;
   }
 
-  private normalizeDifference(shingledInput: number[]): Float32Array {
+  private normalizeDifference(shingledInput: number[]): Float64Array {
     const differenced = this.difference(shingledInput);
     return this.normalize(Array.from(differenced));
   }

@@ -5,7 +5,7 @@
 
 import { performance } from 'perf_hooks';
 import * as fs from 'fs';
-import { ThresholdedRandomCutForest, SimplifiedRCF, ForestMode, TransformMethod } from '../src';
+import { ThresholdedRandomCutForest, OptimizedRCF, ForestMode, TransformMethod } from '../src';
 
 interface BenchmarkConfig {
   dimensions: number;
@@ -95,7 +95,7 @@ export class TRCFBenchmark {
     const data = this.generateTestData(config.dataSize, config.dimensions);
 
     // Setup forest
-    const rcf = new SimplifiedRCF({
+    const rcf = new OptimizedRCF({
       dimensions: config.dimensions * config.shingleSize,
       shingleSize: config.shingleSize,
       numberOfTrees: config.numberOfTrees,
@@ -150,7 +150,7 @@ export class TRCFBenchmark {
     const data = this.generateTestData(config.dataSize, config.dimensions);
 
     // Setup and warmup forest
-    const rcf = new SimplifiedRCF({
+    const rcf = new OptimizedRCF({
       dimensions: config.dimensions * config.shingleSize,
       shingleSize: config.shingleSize,
       numberOfTrees: config.numberOfTrees,
@@ -210,7 +210,7 @@ export class TRCFBenchmark {
   static benchmarkScoreAndUpdate(config: BenchmarkConfig = this.DEFAULT_CONFIG): BenchmarkResult {
     const data = this.generateTestData(config.dataSize, config.dimensions);
 
-    const rcf = new SimplifiedRCF({
+    const rcf = new OptimizedRCF({
       dimensions: config.dimensions * config.shingleSize,
       shingleSize: config.shingleSize,
       numberOfTrees: config.numberOfTrees,

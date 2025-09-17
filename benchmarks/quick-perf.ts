@@ -4,7 +4,7 @@
 
 import { performance } from 'perf_hooks';
 import * as os from 'os';
-import { ThresholdedRandomCutForest, SimplifiedRCF } from '../src';
+import { ThresholdedRandomCutForest, OptimizedRCF } from '../src';
 
 function quickBenchmark() {
   console.log('Quick Performance Baseline');
@@ -18,7 +18,7 @@ function quickBenchmark() {
   ];
 
   for (const config of configs) {
-    const rcf = new SimplifiedRCF({
+    const rcf = new OptimizedRCF({
       dimensions: config.dims,
       shingleSize: 1,
       numberOfTrees: config.trees,

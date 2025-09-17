@@ -1,0 +1,166 @@
+name: PR Merge and Version Bump
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [main]
+
+jobs:
+  version-bump:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'npm'
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Determine version type from PR labels
+        id: version
+        run: |
+          # Check PR labels
+          if ${{ contains(github.event.pull_request.labels.*.name, 'breaking-change') }}; then
+            echo "VERSION_TYPE=major" >> $GITHUB_OUTPUT
+            echo "Detected breaking change - will bump major version"
+          elif ${{ contains(github.event.pull_request.labels.*.name, 'feature') }}; then
+            echo "VERSION_TYPE=minor" >> $GITHUB_OUTPUT
+            echo "Detected feature - will bump minor version"
+          elif ${{ contains(github.event.pull_request.labels.*.name, 'bug') || contains(github.event.pull_request.labels.*.name, 'fix') }}; then
+            echo "VERSION_TYPE=patch" >> $GITHUB_OUTPUT
+            echo "Detected bug fix - will bump patch version"
+          else
+            # Default to patch if no labels
+            echo "VERSION_TYPE=patch" >> $GITHUB_OUTPUT
+            echo "No version labels found - defaulting to patch"
+          fi
+
+      - name: Bump version
+        id: bump
+        run: |
+          # Get current version
+          CURRENT_VERSION=$(node -p "require('./package.json').version")
+          echo "PREVIOUS_VERSION=v$CURRENT_VERSION" >> $GITHUB_OUTPUT
+
+          # Bump version
+          NEW_VERSION=$(npm version ${{ steps.version.outputs.VERSION_TYPE }} --no-git-tag-version)
+          echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_OUTPUT
+          echo "Bumped from v$CURRENT_VERSION to $NEW_VERSION"
+
+      - name: Update changelog
+        run: |
+          cat > CHANGELOG_ENTRY.md << EOF
+          ## ${{ steps.bump.outputs.NEW_VERSION }} - $(date +%Y-%m-%d)
+
+          ### PR: #${{ github.event.pull_request.number }} - ${{ github.event.pull_request.title }}
+
+          ${{ github.event.pull_request.body }}
+
+          **Merged by:** @${{ github.event.pull_request.merged_by.login }}
+
+          EOF
+
+          # Prepend to CHANGELOG.md if it exists
+          if [ -f CHANGELOG.md ]; then
+            cat CHANGELOG.md >> CHANGELOG_ENTRY.md
+            mv CHANGELOG_ENTRY.md CHANGELOG.md
+          else
+            mv CHANGELOG_ENTRY.md CHANGELOG.md
+          fi
+
+      - name: Create release commit
+        run: |
+          git add package.json package-lock.json CHANGELOG.md
+          git commit -m "chore(release): ${{ steps.bump.outputs.NEW_VERSION }} [skip ci]
+
+          - PR: #${{ github.event.pull_request.number }}
+          - Version bump: ${{ steps.version.outputs.VERSION_TYPE }}
+          - Previous: ${{ steps.bump.outputs.PREVIOUS_VERSION }}
+          - New: ${{ steps.bump.outputs.NEW_VERSION }}"
+
+      - name: Create tag
+        run: git tag ${{ steps.bump.outputs.NEW_VERSION }}
+
+      - name: Push changes
+        run: |
+          git push origin main
+          git push origin ${{ steps.bump.outputs.NEW_VERSION }}
+
+      - name: Publish to npm
+        if: success()
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Create GitHub Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.bump.outputs.NEW_VERSION }}
+          release_name: ${{ steps.bump.outputs.NEW_VERSION }}
+          body: |
+            ## What's Changed
+
+            **Pull Request:** #${{ github.event.pull_request.number }} by @${{ github.event.pull_request.user.login }}
+
+            ### Summary
+            ${{ github.event.pull_request.title }}
+
+            ${{ github.event.pull_request.body }}
+
+            ### Version Bump
+            - Type: ${{ steps.version.outputs.VERSION_TYPE }}
+            - Previous: ${{ steps.bump.outputs.PREVIOUS_VERSION }}
+            - New: ${{ steps.bump.outputs.NEW_VERSION }}
+
+            ### Installation
+            ```bash
+            npm install @beshu-tech/trcf-ts@latest
+            ```
+
+            **Full Changelog**: https://github.com/${{ github.repository }}/compare/${{ steps.bump.outputs.PREVIOUS_VERSION }}...${{ steps.bump.outputs.NEW_VERSION }}
+          draft: false
+          prerelease: false
+
+      - name: Comment on PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.payload.pull_request.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `## 🎉 Released in ${{ steps.bump.outputs.NEW_VERSION }}
+
+              This PR has been published to npm as part of ${{ steps.bump.outputs.NEW_VERSION }}.
+
+              ### Installation
+              \`\`\`bash
+              npm install @beshu-tech/trcf-ts@${{ steps.bump.outputs.NEW_VERSION }}
+              \`\`\`
+
+              [View Release](https://github.com/${{ github.repository }}/releases/tag/${{ steps.bump.outputs.NEW_VERSION }})
+              [View on npm](https://www.npmjs.com/package/@beshu-tech/trcf-ts/v/${{ steps.bump.outputs.NEW_VERSION }})`
+            })

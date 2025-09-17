@@ -4,7 +4,7 @@
 
 import { performance } from 'perf_hooks';
 import * as os from 'os';
-import { ThresholdedRandomCutForest, SimplifiedRCF, ForestMode, TransformMethod } from '../src';
+import { ThresholdedRandomCutForest, OptimizedRCF, ForestMode, TransformMethod } from '../src';
 
 function generateData(size: number, dimensions: number): number[][] {
   const data: number[][] = [];
@@ -48,7 +48,7 @@ function runThroughputTest() {
 
   for (const config of configs) {
     // Setup forest
-    const rcf = new SimplifiedRCF({
+    const rcf = new OptimizedRCF({
       dimensions: config.forestMode === ForestMode.TIME_AUGMENTED ? dimensions + 1 : dimensions,
       shingleSize: 1,
       numberOfTrees,
@@ -103,7 +103,7 @@ function testMemoryUsage() {
   }
   const memStart = process.memoryUsage().heapUsed / 1024 / 1024;
 
-  const rcf = new SimplifiedRCF({
+  const rcf = new OptimizedRCF({
     dimensions,
     shingleSize: 1,
     numberOfTrees: trees,

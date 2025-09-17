@@ -1,5 +1,5 @@
 /**
- * Copyright 2024 Simone Scarduzio and Contributors
+ * Copyright Beshu Limited 2025
  * Licensed under the Apache License, Version 2.0
  * Based on AWS Random Cut Forest (https://github.com/aws/random-cut-forest-by-aws)
  */
@@ -15,7 +15,7 @@ import { BasicThresholder } from '../threshold/BasicThresholder';
 
 // Simplified RCF interface - in production, this would be the actual RCF implementation
 export interface RandomCutForest {
-  process(point: Float32Array): {
+  process(point: Float64Array): {
     score: number;
     expectedPoint?: number[];
     attribution?: number[];
@@ -58,14 +58,18 @@ export interface TRCFConfig {
 }
 
 export class ThresholdedRandomCutForest {
-  private static readonly DEFAULT_SHINGLE_SIZE = 8;
+  // Java-compatible defaults
+  private static readonly DEFAULT_SHINGLE_SIZE = 1;  // Java base default
   private static readonly DEFAULT_SAMPLE_SIZE = 256;
-  private static readonly DEFAULT_NUMBER_OF_TREES = 50;
+  private static readonly DEFAULT_NUMBER_OF_TREES = 30;  // Match Java Python wrapper
   private static readonly DEFAULT_TIME_DECAY = 0.0001;
-  private static readonly DEFAULT_ANOMALY_RATE = 0.01;
+  private static readonly DEFAULT_ANOMALY_RATE = 0.005;  // Match Java Python wrapper
   private static readonly DEFAULT_BOUNDING_BOX_CACHE_FRACTION = 1.0;
   private static readonly DEFAULT_INITIAL_ACCEPT_FRACTION = 0.125;
   private static readonly DEFAULT_OUTPUT_AFTER_FRACTION = 0.25;
+  private static readonly DEFAULT_Z_FACTOR = 2.5;  // Java default
+  private static readonly DEFAULT_AUTO_ADJUST = true;  // Java default
+  private static readonly DEFAULT_TRANSFORM_METHOD = TransformMethod.NORMALIZE;  // Java default
 
   private forestMode: ForestMode;
   private transformMethod: TransformMethod;
@@ -81,7 +85,7 @@ export class ThresholdedRandomCutForest {
   constructor(config: TRCFConfig = {}) {
     this.config = config;
     this.forestMode = config.forestMode || ForestMode.STANDARD;
-    this.transformMethod = config.transformMethod || TransformMethod.NONE;
+    this.transformMethod = config.transformMethod || ThresholdedRandomCutForest.DEFAULT_TRANSFORM_METHOD;
     this.scoringStrategy = config.scoringStrategy || ScoringStrategy.EXPECTED_INVERSE_DEPTH;
     this.boundingBoxCacheFraction = config.boundingBoxCacheFraction ||
                                    ThresholdedRandomCutForest.DEFAULT_BOUNDING_BOX_CACHE_FRACTION;
@@ -111,7 +115,8 @@ export class ThresholdedRandomCutForest {
     // Initialize predictor corrector
     const timeDecay = config.timeDecay || ThresholdedRandomCutForest.DEFAULT_TIME_DECAY;
     const anomalyRate = config.anomalyRate || ThresholdedRandomCutForest.DEFAULT_ANOMALY_RATE;
-    const autoAdjust = config.autoAdjust !== undefined ? config.autoAdjust : true;
+    const autoAdjust = config.autoAdjust !== undefined ? config.autoAdjust : ThresholdedRandomCutForest.DEFAULT_AUTO_ADJUST;
+    const zFactor = config.zFactor || ThresholdedRandomCutForest.DEFAULT_Z_FACTOR;
 
     this.predictorCorrector = new PredictorCorrector(
       timeDecay,
@@ -120,6 +125,9 @@ export class ThresholdedRandomCutForest {
       inputLength,
       config.randomSeed || Date.now()
     );
+
+    // Set zFactor on the thresholder
+    this.predictorCorrector.getThresholder().setZFactor(zFactor);
 
     // Initialize with empty descriptor
     this.lastAnomalyDescriptor = new AnomalyDescriptor(new Array(inputLength).fill(0), 0);
@@ -276,7 +284,7 @@ export class ThresholdedRandomCutForest {
     description.totalUpdates = this.totalUpdates;
   }
 
-  private calculateSimplifiedScore(point: Float32Array): number {
+  private calculateSimplifiedScore(point: Float64Array): number {
     // Simple anomaly score calculation based on deviation from mean
     // In production, this would be replaced by actual RCF scoring
     let sum = 0;
@@ -392,5 +400,19 @@ export class ThresholdedRandomCutForest {
    */
   public getLastAnomalyDescriptor(): AnomalyDescriptor | null {
     return this.lastAnomalyDescriptor;
+  }
+
+  /**
+   * Set the Z-factor for threshold calculation (Java API compatibility)
+   */
+  public setZFactor(value: number): void {
+    this.predictorCorrector.getThresholder().setZFactor(value);
+  }
+
+  /**
+   * Get the current Z-factor
+   */
+  public getZFactor(): number {
+    return this.predictorCorrector.getThresholder().getZFactor();
   }
 }

@@ -1,7 +1,5 @@
 /**
- * Simple, ergonomic API for anomaly detection
- *
- * Copyright 2024 Beshu Limited and Contributors
+ * Copyright Beshu Limited 2025
  * Licensed under the Apache License, Version 2.0
  * Based on AWS Random Cut Forest (https://github.com/aws/random-cut-forest-by-aws)
  */

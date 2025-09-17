@@ -5,7 +5,7 @@
 
 import {
   ThresholdedRandomCutForest,
-  SimplifiedRCF,
+  OptimizedRCF,
   ForestMode,
   TransformMethod,
   ImputationMethod,
@@ -88,7 +88,7 @@ describe('Java Example Replication', () => {
 
     // Create two forests like in the Java example
     // First: STANDARD mode
-    const rcf1 = new SimplifiedRCF({
+    const rcf1 = new OptimizedRCF({
       dimensions,
       shingleSize,
       numberOfTrees,
@@ -113,7 +113,7 @@ describe('Java Example Replication', () => {
     forest1.setForest(rcf1);
 
     // Second: TIME_AUGMENTED mode
-    const rcf2 = new SimplifiedRCF({
+    const rcf2 = new OptimizedRCF({
       dimensions: dimensions + shingleSize, // Time augmented adds dimensions
       shingleSize,
       numberOfTrees,
@@ -206,7 +206,7 @@ describe('Java Example Replication', () => {
     const shingleSize = 4;
     const dimensions = baseDimensions * shingleSize;
 
-    const rcf = new SimplifiedRCF({
+    const rcf = new OptimizedRCF({
       dimensions,
       shingleSize,
       numberOfTrees: 20,
@@ -261,7 +261,7 @@ describe('Java Example Replication', () => {
     const dimensions = baseDimensions * shingleSize;
 
     // Standard mode forest
-    const rcfStandard = new SimplifiedRCF({
+    const rcfStandard = new OptimizedRCF({
       dimensions,
       shingleSize,
       numberOfTrees: 30,
@@ -280,7 +280,7 @@ describe('Java Example Replication', () => {
     forestStandard.setForest(rcfStandard);
 
     // Time-augmented mode forest
-    const rcfTimeAugmented = new SimplifiedRCF({
+    const rcfTimeAugmented = new OptimizedRCF({
       dimensions: dimensions + shingleSize,
       shingleSize,
       numberOfTrees: 30,

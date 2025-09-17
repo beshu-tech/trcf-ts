@@ -1,3 +1,9 @@
+/**
+ * Copyright Beshu Limited 2025
+ * Licensed under the Apache License, Version 2.0
+ * Based on AWS Random Cut Forest (https://github.com/aws/random-cut-forest-by-aws)
+ */
+
 import { Deviation } from '../utils/Deviation';
 
 export class BasicThresholder {
@@ -6,7 +12,7 @@ export class BasicThresholder {
   public static readonly DEFAULT_FACTOR_ADJUSTMENT_THRESHOLD = 0.9;
   public static readonly DEFAULT_ABSOLUTE_THRESHOLD = 0.8;
   public static readonly DEFAULT_INITIAL_THRESHOLD = 1.5;
-  public static readonly DEFAULT_Z_FACTOR = 3.0;
+  public static readonly DEFAULT_Z_FACTOR = 2.5;  // Java default
   public static readonly MINIMUM_Z_FACTOR = 2.0;
   public static readonly DEFAULT_AUTO_THRESHOLD = true;
   public static readonly DEFAULT_DEVIATION_STATES = 3;
@@ -100,6 +106,14 @@ export class BasicThresholder {
 
   public setMinimumScores(value: number): void {
     this.minimumScores = value;
+  }
+
+  public setZFactor(value: number): void {
+    this.zFactor = Math.max(value, BasicThresholder.MINIMUM_Z_FACTOR);
+  }
+
+  public getZFactor(): number {
+    return this.zFactor;
   }
 
   public getPrimaryMean(): number {

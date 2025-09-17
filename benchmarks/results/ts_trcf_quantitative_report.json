@@ -1,0 +1,59 @@
+{
+  "timestamp": "2025-09-16T21:00:32.251Z",
+  "summary": {
+    "totalPoints": 24500,
+    "totalTime": 0.842,
+    "avgThroughput": 29097.387173396677,
+    "testConfigs": 6
+  },
+  "detailedResults": [
+    {
+      "length": 500,
+      "shingle": 1,
+      "meanScore": 0.4568925783178214,
+      "maxScore": 0.8149292600154877,
+      "anomalyCount": 1,
+      "throughput": 21739.130434782608
+    },
+    {
+      "length": 2000,
+      "shingle": 1,
+      "meanScore": 0.4083388872559372,
+      "maxScore": 0.9073452115058899,
+      "anomalyCount": 4,
+      "throughput": 29850.746268656716
+    },
+    {
+      "length": 5000,
+      "shingle": 1,
+      "meanScore": 0.3771568478941916,
+      "maxScore": 0.9486196172237397,
+      "anomalyCount": 20,
+      "throughput": 33112.58278145696
+    },
+    {
+      "length": 10000,
+      "shingle": 1,
+      "meanScore": 0.31504934965550546,
+      "maxScore": 0.9593932616710663,
+      "anomalyCount": 47,
+      "throughput": 36101.08303249097
+    },
+    {
+      "length": 2000,
+      "shingle": 4,
+      "meanScore": 0.5479295322154456,
+      "maxScore": 0.9042484521865845,
+      "anomalyCount": 29,
+      "throughput": 31746.031746031746
+    },
+    {
+      "length": 5000,
+      "shingle": 4,
+      "meanScore": 0.5329755726487925,
+      "maxScore": 0.9498047184944153,
+      "anomalyCount": 84,
+      "throughput": 19157.088122605364
+    }
+  ]
+}

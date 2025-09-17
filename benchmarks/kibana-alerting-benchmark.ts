@@ -6,7 +6,7 @@
 import { performance } from 'perf_hooks';
 import * as zlib from 'zlib';
 import * as fs from 'fs';
-import { ThresholdedRandomCutForest, SimplifiedRCF, OptimizedRCF, ForestMode, TransformMethod } from '../src';
+import { ThresholdedRandomCutForest, OptimizedRCF, ForestMode, TransformMethod } from '../src';
 
 interface KibanaMetrics {
   // Scoring metrics (most critical for alerting)

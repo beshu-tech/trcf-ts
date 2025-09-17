@@ -1,11 +1,11 @@
 /**
- * Complete example demonstrating TRCF with simplified RCF implementation
+ * Complete example demonstrating TRCF with optimized RCF implementation
  * for time series anomaly detection
  */
 
 import {
   ThresholdedRandomCutForest,
-  SimplifiedRCF,
+  OptimizedRCF,
   ForestMode,
   TransformMethod,
   ScoringStrategy,
@@ -42,7 +42,7 @@ function generateTimeSeriesData(): number[][] {
   return data;
 }
 
-// Example 1: Basic anomaly detection with TRCF and SimplifiedRCF
+// Example 1: Basic anomaly detection with TRCF and OptimizedRCF
 async function basicAnomalyDetection() {
   console.log('=== Example 1: Basic Anomaly Detection ===\n');
 
@@ -57,7 +57,7 @@ async function basicAnomalyDetection() {
   };
 
   // Create simplified RCF
-  const rcf = new SimplifiedRCF(rcfConfig);
+  const rcf = new OptimizedRCF(rcfConfig);
 
   // Configure TRCF
   const trcfConfig: TRCFConfig = {
@@ -111,7 +111,7 @@ async function timeAugmentedDetection() {
     timeDecay: 0.0001
   };
 
-  const rcf = new SimplifiedRCF(rcfConfig);
+  const rcf = new OptimizedRCF(rcfConfig);
 
   // Configure TRCF for time-augmented mode
   const trcfConfig: TRCFConfig = {
@@ -163,7 +163,7 @@ async function normalizedShingledDetection() {
     timeDecay: 0.0001
   };
 
-  const rcf = new SimplifiedRCF(rcfConfig);
+  const rcf = new OptimizedRCF(rcfConfig);
 
   // Configure TRCF with normalization and shingling
   const trcfConfig: TRCFConfig = {
@@ -205,7 +205,7 @@ async function missingValueHandling() {
     timeDecay: 0.0001
   };
 
-  const rcf = new SimplifiedRCF(rcfConfig);
+  const rcf = new OptimizedRCF(rcfConfig);
 
   const trcfConfig: TRCFConfig = {
     dimensions: 3,
@@ -266,7 +266,7 @@ async function multiModeScoring() {
     timeDecay: 0.0001
   };
 
-  const rcf = new SimplifiedRCF(rcfConfig);
+  const rcf = new OptimizedRCF(rcfConfig);
 
   // Test different scoring strategies
   const strategies = [

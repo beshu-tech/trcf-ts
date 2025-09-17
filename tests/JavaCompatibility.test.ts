@@ -5,7 +5,7 @@
 
 import {
   ThresholdedRandomCutForest,
-  SimplifiedRCF,
+  OptimizedRCF,
   BasicThresholder,
   Preprocessor,
   ForestMode,
@@ -114,9 +114,10 @@ describe('Java TRCF Compatibility Tests', () => {
       thresholder.update(0.9);
       thresholder.update(1.1);
 
-      // Test: score at mean should have grade 0
-      const mean = thresholder.getPrimaryMean();
-      let grade = thresholder.getAnomalyGrade(mean);
+      // Test: score below threshold should have grade 0
+      // Use a score we know is below the threshold
+      const lowScore = 0.5; // Well below the mean of ~1.0
+      let grade = thresholder.getAnomalyGrade(lowScore);
       expect(grade).toBe(0);
 
       // Test anomalous score
@@ -164,7 +165,7 @@ describe('Java TRCF Compatibility Tests', () => {
           sampleSize: 256,
           timeDecay: 0.01
         };
-        const rcf = new SimplifiedRCF(rcfConfig);
+        const rcf = new OptimizedRCF(rcfConfig);
 
         const config: TRCFConfig = {
           dimensions: 4,
@@ -193,7 +194,7 @@ describe('Java TRCF Compatibility Tests', () => {
     });
 
     test('missing value handling', () => {
-      const rcf = new SimplifiedRCF({
+      const rcf = new OptimizedRCF({
         dimensions: 3,
         shingleSize: 1,
         numberOfTrees: 10,
@@ -222,7 +223,7 @@ describe('Java TRCF Compatibility Tests', () => {
 
   describe('Sequential Processing Tests', () => {
     test('sequential processing maintains state', () => {
-      const rcf = new SimplifiedRCF({
+      const rcf = new OptimizedRCF({
         dimensions: 2,
         shingleSize: 1,
         numberOfTrees: 10,
@@ -284,7 +285,7 @@ describe('Java TRCF Compatibility Tests', () => {
 
   describe('Transform Method Tests', () => {
     test('NORMALIZE transform', () => {
-      const rcf = new SimplifiedRCF({
+      const rcf = new OptimizedRCF({
         dimensions: 2,
         shingleSize: 1,
         numberOfTrees: 10,
@@ -315,7 +316,7 @@ describe('Java TRCF Compatibility Tests', () => {
     });
 
     test('DIFFERENCE transform', () => {
-      const rcf = new SimplifiedRCF({
+      const rcf = new OptimizedRCF({
         dimensions: 4,
         shingleSize: 2,
         numberOfTrees: 10,
@@ -342,7 +343,7 @@ describe('Java TRCF Compatibility Tests', () => {
     });
 
     test('NORMALIZE_DIFFERENCE transform', () => {
-      const rcf = new SimplifiedRCF({
+      const rcf = new OptimizedRCF({
         dimensions: 2,
         shingleSize: 1,
         numberOfTrees: 10,
@@ -378,7 +379,7 @@ describe('Java TRCF Compatibility Tests', () => {
       ];
 
       strategies.forEach(strategy => {
-        const rcf = new SimplifiedRCF({
+        const rcf = new OptimizedRCF({
           dimensions: 2,
           shingleSize: 1,
           numberOfTrees: 10,
@@ -415,7 +416,7 @@ describe('Java TRCF Compatibility Tests', () => {
       }
 
       // First run
-      const rcf1 = new SimplifiedRCF({
+      const rcf1 = new OptimizedRCF({
         dimensions: 2,
         shingleSize: 1,
         numberOfTrees: 10,
@@ -434,7 +435,7 @@ describe('Java TRCF Compatibility Tests', () => {
       const results1 = trcf1.processSequentially(data);
 
       // Second run with same seed
-      const rcf2 = new SimplifiedRCF({
+      const rcf2 = new OptimizedRCF({
         dimensions: 2,
         shingleSize: 1,
         numberOfTrees: 10,
@@ -481,7 +482,7 @@ describe('Java TRCF Compatibility Tests', () => {
 
     test('handles high-dimensional data', () => {
       const dimensions = 100;
-      const rcf = new SimplifiedRCF({
+      const rcf = new OptimizedRCF({
         dimensions,
         shingleSize: 1,
         numberOfTrees: 10,

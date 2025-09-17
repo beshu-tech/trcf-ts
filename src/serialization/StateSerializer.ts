@@ -1,6 +1,7 @@
 /**
- * Efficient state serialization for TRCF
- * Optimized for Kibana alerting use case
+ * Copyright Beshu Limited 2025
+ * Licensed under the Apache License, Version 2.0
+ * Based on AWS Random Cut Forest (https://github.com/aws/random-cut-forest-by-aws)
  */
 
 import * as zlib from 'zlib';
@@ -57,7 +58,7 @@ export interface TRCFState {
 
 interface CompactTreeState {
   // Store only essential data for reconstruction
-  samples: Float32Array[];  // Current samples in tree
+  samples: Float64Array[];  // Current samples in tree
   counts: Uint32Array;      // Sample counts for reservoir sampling
   treeSize: number;
 }
@@ -161,7 +162,7 @@ export class StateSerializer {
       forest: {
         totalUpdates: compact.f.u,
         trees: compact.f.t.map((tree: any) => ({
-          samples: tree.s.map((s: number[]) => new Float32Array(s)),
+          samples: tree.s.map((s: number[]) => new Float64Array(s)),
           counts: new Uint32Array(tree.c),
           treeSize: tree.sz
         }))

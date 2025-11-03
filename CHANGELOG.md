@@ -1,3 +1,71 @@
+## v1.1.8 - 2025-11-03
+
+### PR: #15 - chore(deps): bump actions/setup-node from 5 to 6
+
+Bumps [actions/setup-node](https://github.com/actions/setup-node) from 5 to 6.
+<details>
+<summary>Release notes</summary>
+<p><em>Sourced from <a href="https://github.com/actions/setup-node/releases">actions/setup-node's releases</a>.</em></p>
+<blockquote>
+<h2>v6.0.0</h2>
+<h2>What's Changed</h2>
+<p><strong>Breaking Changes</strong></p>
+<ul>
+<li>Limit automatic caching to npm, update workflows and documentation by <a href="https://github.com/priyagupta108"><code>@​priyagupta108</code></a> in <a href="https://redirect.github.com/actions/setup-node/pull/1374">actions/setup-node#1374</a></li>
+</ul>
+<p><strong>Dependency Upgrades</strong></p>
+<ul>
+<li>Upgrade ts-jest from 29.1.2 to 29.4.1 and document breaking changes in v5 by <a href="https://github.com/dependabot"><code>@​dependabot</code></a>[bot] in <a href="https://redirect.github.com/actions/setup-node/pull/1336">#1336</a></li>
+<li>Upgrade prettier from 2.8.8 to 3.6.2 by <a href="https://github.com/dependabot"><code>@​dependabot</code></a>[bot] in <a href="https://redirect.github.com/actions/setup-node/pull/1334">#1334</a></li>
+<li>Upgrade actions/publish-action from 0.3.0 to 0.4.0 by <a href="https://github.com/dependabot"><code>@​dependabot</code></a>[bot] in <a href="https://redirect.github.com/actions/setup-node/pull/1362">#1362</a></li>
+</ul>
+<p><strong>Full Changelog</strong>: <a href="https://github.com/actions/setup-node/compare/v5...v6.0.0">https://github.com/actions/setup-node/compare/v5...v6.0.0</a></p>
+</blockquote>
+</details>
+<details>
+<summary>Commits</summary>
+<ul>
+<li><a href="https://github.com/actions/setup-node/commit/2028fbc5c25fe9cf00d9f06a71cc4710d4507903"><code>2028fbc</code></a> Limit automatic caching to npm, update workflows and documentation (<a href="https://redirect.github.com/actions/setup-node/issues/1374">#1374</a>)</li>
+<li><a href="https://github.com/actions/setup-node/commit/13427813f706a0f6c9b74603b31103c40ab1c35a"><code>1342781</code></a> Bump actions/publish-action from 0.3.0 to 0.4.0 (<a href="https://redirect.github.com/actions/setup-node/issues/1362">#1362</a>)</li>
+<li><a href="https://github.com/actions/setup-node/commit/89d709d423dc495668cd762a18dd4a070611be3f"><code>89d709d</code></a> Bump prettier from 2.8.8 to 3.6.2 (<a href="https://redirect.github.com/actions/setup-node/issues/1334">#1334</a>)</li>
+<li><a href="https://github.com/actions/setup-node/commit/cd2651c46231bc0d6f48d6b34433b845331235fe"><code>cd2651c</code></a> Bump ts-jest from 29.1.2 to 29.4.1 (<a href="https://redirect.github.com/actions/setup-node/issues/1336">#1336</a>)</li>
+<li>See full diff in <a href="https://github.com/actions/setup-node/compare/v5...v6">compare view</a></li>
+</ul>
+</details>
+<br />
+
+
+[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=actions/setup-node&package-manager=github_actions&previous-version=5&new-version=6)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)
+
+Dependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting .
+
+[//]: # (dependabot-automerge-start)
+[//]: # (dependabot-automerge-end)
+
+---
+
+<details>
+<summary>Dependabot commands and options</summary>
+<br />
+
+You can trigger Dependabot actions by commenting on this PR:
+-  will rebase this PR
+-  will recreate this PR, overwriting any edits that have been made to it
+-  will merge this PR after your CI passes on it
+-  will squash and merge this PR after your CI passes on it
+-  will cancel a previously requested merge and block automerging
+-  will reopen this PR if it is closed
+-  will close this PR and stop Dependabot recreating it. You can achieve the same result by closing it manually
+-  will show all of the ignore conditions of the specified dependency
+-  will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)
+-  will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)
+-  will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)
+
+
+</details>
+
+**Merged by:** @sscarduzio
+
 ## v1.1.7 - 2025-11-03
 
 ### PR: #10 - chore(deps-dev): bump typescript from 5.9.2 to 5.9.3

@@ -1,6 +1,6 @@
 {
   "name": "@beshu-tech/trcf-ts",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "TypeScript implementation of AWS Thresholded Random Cut Forest for anomaly detection",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

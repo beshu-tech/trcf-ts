@@ -1,3 +1,85 @@
+## v1.1.7 - 2025-11-03
+
+### PR: #10 - chore(deps-dev): bump typescript from 5.9.2 to 5.9.3
+
+[//]: # (dependabot-start)
+⚠️  **Dependabot is rebasing this PR** ⚠️ 
+
+Rebasing might not happen immediately, so don't worry if this takes some time.
+
+Note: if you make any changes to this PR yourself, they will take precedence over the rebase.
+
+---
+
+[//]: # (dependabot-end)
+
+Bumps [typescript](https://github.com/microsoft/TypeScript) from 5.9.2 to 5.9.3.
+<details>
+<summary>Release notes</summary>
+<p><em>Sourced from <a href="https://github.com/microsoft/TypeScript/releases">typescript's releases</a>.</em></p>
+<blockquote>
+<h2>TypeScript 5.9.3</h2>
+<p>Note: this tag was recreated to point at the correct commit. The npm package contained the correct content.</p>
+<p>For release notes, check out the <a href="https://devblogs.microsoft.com/typescript/announcing-typescript-5-9/">release announcement</a></p>
+<ul>
+<li><a href="https://github.com/Microsoft/TypeScript/issues?utf8=%E2%9C%93&amp;q=milestone%3A%22TypeScript+5.9.0%22+is%3Aclosed+">fixed issues query for Typescript 5.9.0 (Beta)</a>.</li>
+<li><a href="https://github.com/Microsoft/TypeScript/issues?utf8=%E2%9C%93&amp;q=milestone%3A%22TypeScript+5.9.1%22+is%3Aclosed+">fixed issues query for Typescript 5.9.1 (RC)</a>.</li>
+<li><em>No specific changes for TypeScript 5.9.2 (Stable)</em></li>
+<li><a href="https://github.com/Microsoft/TypeScript/issues?utf8=%E2%9C%93&amp;q=milestone%3A%22TypeScript+5.9.3%22+is%3Aclosed+">fixed issues query for Typescript 5.9.3 (Stable)</a>.</li>
+</ul>
+<p>Downloads are available on:</p>
+<ul>
+<li><a href="https://www.npmjs.com/package/typescript">npm</a></li>
+</ul>
+</blockquote>
+</details>
+<details>
+<summary>Commits</summary>
+<ul>
+<li><a href="https://github.com/microsoft/TypeScript/commit/c63de15a992d37f0d6cec03ac7631872838602cb"><code>c63de15</code></a> Bump version to 5.9.3 and LKG</li>
+<li><a href="https://github.com/microsoft/TypeScript/commit/8428ca4cc8a7ecc9ac18dd0258016228814f5eaf"><code>8428ca4</code></a> 🤖 Pick PR <a href="https://redirect.github.com/microsoft/TypeScript/issues/62438">#62438</a> (Fix incorrectly ignored dts file fr...) into release-5.9 (#...</li>
+<li><a href="https://github.com/microsoft/TypeScript/commit/a131cac6831aa6532ea963d0cb3131b957cad980"><code>a131cac</code></a> 🤖 Pick PR <a href="https://redirect.github.com/microsoft/TypeScript/issues/62351">#62351</a> (Add missing Float16Array constructo...) into release-5.9 (#...</li>
+<li><a href="https://github.com/microsoft/TypeScript/commit/04243333584a5bfaeb3434c0982c6280fe87b8d5"><code>0424333</code></a> 🤖 Pick PR <a href="https://redirect.github.com/microsoft/TypeScript/issues/62423">#62423</a> (Revert PR 61928) into release-5.9 (<a href="https://redirect.github.com/microsoft/TypeScript/issues/62425">#62425</a>)</li>
+<li><a href="https://github.com/microsoft/TypeScript/commit/bdb641a4347af822916fb8cdb9894c9c2d2421dd"><code>bdb641a</code></a> 🤖 Pick PR <a href="https://redirect.github.com/microsoft/TypeScript/issues/62311">#62311</a> (Fix parenthesizer rules for manuall...) into release-5.9 (#...</li>
+<li><a href="https://github.com/microsoft/TypeScript/commit/0d9b9b92e2aca2f75c979a801abbc21bff473748"><code>0d9b9b9</code></a> 🤖 Pick PR <a href="https://redirect.github.com/microsoft/TypeScript/issues/61978">#61978</a> (Restructure CI to prepare for requi...) into release-5.9 (#...</li>
+<li><a href="https://github.com/microsoft/TypeScript/commit/2dce0c58af51cf9a9068365dc2f756c61b82b597"><code>2dce0c5</code></a> Intentionally regress one buggy declaration output to an older version (<a href="https://redirect.github.com/microsoft/TypeScript/issues/62163">#62163</a>)</li>
+<li>See full diff in <a href="https://github.com/microsoft/TypeScript/compare/v5.9.2...v5.9.3">compare view</a></li>
+</ul>
+</details>
+<br />
+
+
+[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=typescript&package-manager=npm_and_yarn&previous-version=5.9.2&new-version=5.9.3)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)
+
+Dependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting .
+
+[//]: # (dependabot-automerge-start)
+[//]: # (dependabot-automerge-end)
+
+---
+
+<details>
+<summary>Dependabot commands and options</summary>
+<br />
+
+You can trigger Dependabot actions by commenting on this PR:
+-  will rebase this PR
+-  will recreate this PR, overwriting any edits that have been made to it
+-  will merge this PR after your CI passes on it
+-  will squash and merge this PR after your CI passes on it
+-  will cancel a previously requested merge and block automerging
+-  will reopen this PR if it is closed
+-  will close this PR and stop Dependabot recreating it. You can achieve the same result by closing it manually
+-  will show all of the ignore conditions of the specified dependency
+-  will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)
+-  will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)
+-  will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)
+
+
+</details>
+
+**Merged by:** @sscarduzio
+
 ## v1.1.6 - 2025-11-03
 
 ### PR: #8 - chore(deps-dev): bump jest from 30.1.3 to 30.2.0

@@ -1,3 +1,91 @@
+## v1.1.6 - 2025-11-03
+
+### PR: #8 - chore(deps-dev): bump jest from 30.1.3 to 30.2.0
+
+Bumps [jest](https://github.com/jestjs/jest/tree/HEAD/packages/jest) from 30.1.3 to 30.2.0.
+<details>
+<summary>Release notes</summary>
+<p><em>Sourced from <a href="https://github.com/jestjs/jest/releases">jest's releases</a>.</em></p>
+<blockquote>
+<h2>30.2.0</h2>
+<h3>Chore &amp; Maintenance</h3>
+<ul>
+<li><code>[*]</code> Update example repo for testing React Native projects (<a href="https://redirect.github.com/jestjs/jest/pull/15832">#15832</a>)</li>
+<li><code>[*]</code> Update <code>jest-watch-typeahead</code> to v3 (<a href="https://redirect.github.com/jestjs/jest/pull/15830">#15830</a>)</li>
+</ul>
+<h2>Features</h2>
+<ul>
+<li><code>[jest-environment-jsdom-abstract]</code> Add support for JSDOM v27 (<a href="https://redirect.github.com/jestjs/jest/pull/15834">#15834</a>)</li>
+</ul>
+<h3>Fixes</h3>
+<ul>
+<li><code>[babel-jest]</code> Export the <code>TransformerConfig</code> interface (<a href="https://redirect.github.com/jestjs/jest/pull/15820">#15820</a>)</li>
+<li><code>[jest-config]</code> Fix <code>jest.config.ts</code> with TS loader specified in docblock pragma (<a href="https://redirect.github.com/jestjs/jest/pull/15839">#15839</a>)</li>
+</ul>
+</blockquote>
+</details>
+<details>
+<summary>Changelog</summary>
+<p><em>Sourced from <a href="https://github.com/jestjs/jest/blob/main/CHANGELOG.md">jest's changelog</a>.</em></p>
+<blockquote>
+<h2>30.2.0</h2>
+<h3>Chore &amp; Maintenance</h3>
+<ul>
+<li><code>[*]</code> Update example repo for testing React Native projects (<a href="https://redirect.github.com/jestjs/jest/pull/15832">#15832</a>)</li>
+<li><code>[*]</code> Update <code>jest-watch-typeahead</code> to v3 (<a href="https://redirect.github.com/jestjs/jest/pull/15830">#15830</a>)</li>
+</ul>
+<h2>Features</h2>
+<ul>
+<li><code>[jest-environment-jsdom-abstract]</code> Add support for JSDOM v27 (<a href="https://redirect.github.com/jestjs/jest/pull/15834">#15834</a>)</li>
+</ul>
+<h3>Fixes</h3>
+<ul>
+<li><code>[babel-jest]</code> Export the <code>TransformerConfig</code> interface (<a href="https://redirect.github.com/jestjs/jest/pull/15820">#15820</a>)</li>
+<li><code>[jest-config]</code> Fix <code>jest.config.ts</code> with TS loader specified in docblock pragma (<a href="https://redirect.github.com/jestjs/jest/pull/15839">#15839</a>)</li>
+</ul>
+</blockquote>
+</details>
+<details>
+<summary>Commits</summary>
+<ul>
+<li><a href="https://github.com/jestjs/jest/commit/855864e3f9751366455246790be2bf912d4d0dac"><code>855864e</code></a> v30.2.0</li>
+<li>See full diff in <a href="https://github.com/jestjs/jest/commits/v30.2.0/packages/jest">compare view</a></li>
+</ul>
+</details>
+<br />
+
+
+[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=jest&package-manager=npm_and_yarn&previous-version=30.1.3&new-version=30.2.0)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)
+
+Dependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting .
+
+[//]: # (dependabot-automerge-start)
+[//]: # (dependabot-automerge-end)
+
+---
+
+<details>
+<summary>Dependabot commands and options</summary>
+<br />
+
+You can trigger Dependabot actions by commenting on this PR:
+-  will rebase this PR
+-  will recreate this PR, overwriting any edits that have been made to it
+-  will merge this PR after your CI passes on it
+-  will squash and merge this PR after your CI passes on it
+-  will cancel a previously requested merge and block automerging
+-  will reopen this PR if it is closed
+-  will close this PR and stop Dependabot recreating it. You can achieve the same result by closing it manually
+-  will show all of the ignore conditions of the specified dependency
+-  will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)
+-  will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)
+-  will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)
+
+
+</details>
+
+**Merged by:** @sscarduzio
+
 ## v1.1.5 - 2025-09-17
 
 ### PR: #1 - chore(deps): bump codecov/codecov-action from 3 to 5
